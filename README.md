@@ -93,3 +93,27 @@ An automated pipeline that:
 > **Baseline Report:** https://davperez-tech.github.io/Automated-DISA-STIG-Hardening-Pipeline/Reports/rhel9-stig-baseline-report.html
 
 > **Post-Hardening Report:** https://davperez-tech.github.io/Automated-DISA-STIG-Hardening-Pipeline/Reports/post-hardening-report.html
+
+**Resolution Rate by Category**
+
+![Resolution Rate](Graphs/stig_resolution_rate.svg)
+
+## What Changed?
+**Top Security Improvements:**
+
+✅ Audit Subsystem - Full auditd configuration with privileged command tracking
+
+✅ Password Policies - Complexity, history, and lockout enforcement
+
+✅ SSH Hardening - Disabled root login, key-only auth, idle timeout
+
+✅ File Permissions - Corrected 200+ critical system files
+
+✅ SELinux - Enabled and set to enforcing mode
+
+✅ Firewall - Active with minimal allowed services
+
+✅ Service Hardening - Disabled 15+ unnecessary services
+
+<img width="1672" height="948" alt="After 1st Asessment" src="https://github.com/user-attachments/assets/5e40a716-9802-43f1-916a-29216027e4dd" />
+
