@@ -78,7 +78,7 @@
               ╚════════════════════════════════════════════╝
         
         - name: Import OpenSCAP-generated remediation playbook
-          include_tasks: remediation-generated.yml
+          include_tasks: rhel9-stig-remediation.yml
       
       tags: remediate
 
