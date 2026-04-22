@@ -91,3 +91,5 @@ An automated pipeline that:
 | Total Rules               | 727                                       | 727                                        | -               |
 
 > **Baseline Report:** https://davperez-tech.github.io/Automated-DISA-STIG-Hardening-Pipeline/Reports/rhel9-stig-baseline-report.html
+
+> **Post-Hardening Report:** https://davperez-tech.github.io/Automated-DISA-STIG-Hardening-Pipeline/Reports/post-hardening-report.html
