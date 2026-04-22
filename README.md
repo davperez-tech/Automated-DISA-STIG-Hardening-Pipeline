@@ -54,6 +54,8 @@ An automated pipeline that:
 <img width="734" height="180" alt="Workflow" src="https://github.com/user-attachments/assets/f71f0304-4fa5-405d-878e-993236dcb462" />
 </p>
 
+## Project Files
+
 ## Security Hardening
 | Authentication & Access Control                               | Audit & Logging                                  | System Protection                                |
 | :-------------                                                |:--------------                                   |:--------------                                   |
