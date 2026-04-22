@@ -1,1 +1,144 @@
+- name: DISA STIG Automated Hardening Pipeline
+  hosts: rhel9_targets
+  become: yes
+  vars:
+    timestamp: "{{ ansible_date_time.iso8601_basic_short }}"
+    scap_content: "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
+    stig_profile: "xccdf_org.ssgproject.content_profile_stig"
+    
+  tasks:
+    #
+    # PHASE 1: PRE-REMEDIATION BASELINE SCAN
+    #
+    - name: Phase 1 - Baseline Scan
+      block:
+        - name: Display banner
+          debug:
+            msg: |
+              ╔════════════════════════════════════════════╗
+              ║  DISA STIG Automated Hardening Pipeline  ║
+              ║  Phase 1: Baseline Scan                   ║
+              ╚════════════════════════════════════════════╝
+        
+        - name: Ensure OpenSCAP is installed
+          dnf:
+            name:
+              - openscap-scanner
+              - scap-security-guide
+            state: present
+        
+        - name: Create baseline report directory
+          file:
+            path: /root/stig-reports/baseline
+            state: directory
+            mode: '0755'
+        
+        - name: Run baseline STIG scan
+          shell: |
+            oscap xccdf eval \
+              --profile {{ stig_profile }} \
+              --results /root/stig-reports/baseline/baseline-{{ timestamp }}.xml \
+              --report /root/stig-reports/baseline/baseline-{{ timestamp }}.html \
+              {{ scap_content }}
+          register: baseline_scan
+          failed_when: baseline_scan.rc not in [0,2]
+          changed_when: false
+        
+        - name: Extract baseline compliance score
+          shell: |
+            grep -oP 'Score: \K[0-9.]+' /root/stig-reports/baseline/baseline-{{ timestamp }}.html | head -1
+          register: baseline_score
+          changed_when: false
+        
+        - name: Display baseline score
+          debug:
+            msg: "Baseline STIG Compliance: {{ baseline_score.stdout }}%"
+        
+        - name: Fetch baseline reports to control node
+          fetch:
+            src: "/root/stig-reports/baseline/baseline-{{ timestamp }}.{{ item }}"
+            dest: "reports/{{ inventory_hostname }}/baseline/"
+            flat: yes
+          loop:
+            - html
+            - xml
+      
+      tags: baseline
 
+    #
+    # PHASE 2: APPLY STIG REMEDIATION
+    #
+    - name: Phase 2 - Apply Remediations
+      block:
+        - name: Display banner
+          debug:
+            msg: |
+              ╔════════════════════════════════════════════╗
+              ║  Phase 2: Applying STIG Remediations     ║
+              ╚════════════════════════════════════════════╝
+        
+        - name: Import OpenSCAP-generated remediation playbook
+          include_tasks: remediation-generated.yml
+      
+      tags: remediate
+
+    #
+    # PHASE 3: POST-REMEDIATION VERIFICATION SCAN
+    #
+    - name: Phase 3 - Verification Scan
+      block:
+        - name: Display banner
+          debug:
+            msg: |
+              ╔════════════════════════════════════════════╗
+              ║  Phase 3: Post-Remediation Verification  ║
+              ╚════════════════════════════════════════════╝
+        
+        - name: Create post-remediation report directory
+          file:
+            path: /root/stig-reports/post-remediation
+            state: directory
+            mode: '0755'
+        
+        - name: Run post-remediation STIG scan
+          shell: |
+            oscap xccdf eval \
+              --profile {{ stig_profile }} \
+              --results /root/stig-reports/post-remediation/post-{{ timestamp }}.xml \
+              --report /root/stig-reports/post-remediation/post-{{ timestamp }}.html \
+              {{ scap_content }}
+          register: post_scan
+          failed_when: post_scan.rc not in [0,2]
+          changed_when: false
+        
+        - name: Extract post-remediation compliance score
+          shell: |
+            grep -oP 'Score: \K[0-9.]+' /root/stig-reports/post-remediation/post-{{ timestamp }}.html | head -1
+          register: post_score
+          changed_when: false
+        
+        - name: Calculate improvement
+          set_fact:
+            compliance_improvement: "{{ (post_score.stdout|float - baseline_score.stdout|float) | round(2) }}"
+        
+        - name: Display final results
+          debug:
+            msg: |
+              ═══════════════════════════════════════════════
+                STIG Hardening Complete!
+              ═══════════════════════════════════════════════
+                Baseline:     {{ baseline_score.stdout }}%
+                Final:        {{ post_score.stdout }}%
+                Improvement:  +{{ compliance_improvement }}%
+              ═══════════════════════════════════════════════
+        
+        - name: Fetch post-remediation reports to control node
+          fetch:
+            src: "/root/stig-reports/post-remediation/post-{{ timestamp }}.{{ item }}"
+            dest: "reports/{{ inventory_hostname }}/post/"
+            flat: yes
+          loop:
+            - html
+            - xml
+      
+      tags: verify
