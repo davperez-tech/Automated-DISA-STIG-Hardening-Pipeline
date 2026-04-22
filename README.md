@@ -4,7 +4,7 @@
 | Compliance Improvement   | Progress                                  |
 |:-------------:           |:--------------:                           |
 | Baseline Report          | ![Progress](https://progress-bar.xyz/48/) |
-| Post-Remediation Report  | ![Progress](https://progress-bar.xyz/96/) |
+| Post-Hardening Report    | ![Progress](https://progress-bar.xyz/96/) |
 
 **Security Posture**
 
@@ -53,3 +53,40 @@ An automated pipeline that:
 <p align="center">
 <img width="734" height="180" alt="Workflow" src="https://github.com/user-attachments/assets/f71f0304-4fa5-405d-878e-993236dcb462" />
 </p>
+
+## Security Hardening
+| Authentication & Access Control                               | Audit & Logging                                  | System Protection                                |
+| :-------------                                                |:--------------                                   |:--------------                                   |
+| 15+ character passwords with complexity requirements          | auditd enabled with privileged command tracking  | SELinux enforcing mode                           |
+| 24-password history enforcement                               | Immutable audit logs                             | Firewalld with minimal allowed services          |
+| Account lockout after 3 failed attempts                       | File integrity monitoring (AIDE)                 | Kernel hardening (ASLR, NX bit, exec-shield)     |
+| SSH hardening (key-only auth, no root login, idle timeout)    | Centralized syslog configuration                 | Unnecessary services disabled                    |
+
+## Automation Capabilities
+
+- **Idempotent** - Safe to run multiple times
+
+- **Scalable** - Add hundreds of hosts to inventory
+
+- **Auditable** - XML/HTML evidence packages
+
+- **Documented** - Auto-generates exception reports
+
+## Reporting
+
+- HTML reports with visual compliance dashboards
+
+- XML results for SIEM integration
+
+- Before/after comparison metrics
+
+- CAT I/II/III severity categorization
+
+## Results & Analysis Compliance Improvement
+| Metric                    | Baseline                                  | Post-Hardening                             | Change          |
+| :-------------            | :--------------:                          | :--------------:                           |:--------------: |                        
+| **Overall Compliance**    | ![Progress](https://progress-bar.xyz/48/) | ![Progress](https://progress-bar.xyz/96/)  | +47.48% ✅      |
+| Rules Passed              | 174                                       | 420                                        | +246            |
+| Rules Failed              | 262                                       | 18                                         | -244            |
+| Total Rules               | 727                                       | 727                                        | -               |
+
