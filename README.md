@@ -118,4 +118,9 @@ An automated pipeline that:
 <img width="1672" height="948" alt="After 1st Asessment" src="https://github.com/user-attachments/assets/5e40a716-9802-43f1-916a-29216027e4dd" />
 
 ## Exception & Unresolved Findings
-> **Exception & Unresolved Findings Report:** (Reports/Exception&UnresolvedFindingsReport.pdf)
+This report documents all unresolved DISA Security Technical Implementation Guide (STIG) findings identified 
+following automated remediation of a Red Hat Enterprise Linux 9 system. The findings documented herein 
+represent exceptions requiring organizational risk acceptance, site-specific configuration, or infrastructure-level 
+prerequisites that cannot be addressed through automated scripting alone. 
+
+> **Exception & Unresolved Findings Report:** [Reports](Reports/Exception&UnresolvedFindingsReport.pdf)
