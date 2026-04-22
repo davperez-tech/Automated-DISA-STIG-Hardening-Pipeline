@@ -117,3 +117,4 @@ An automated pipeline that:
 
 <img width="1672" height="948" alt="After 1st Asessment" src="https://github.com/user-attachments/assets/5e40a716-9802-43f1-916a-29216027e4dd" />
 
+## Exception & Unresolved Findings
