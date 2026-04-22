@@ -1,0 +1,1 @@
+# Automated-DISA-STIG-Hardening-Pipeline
