@@ -90,4 +90,4 @@ An automated pipeline that:
 | Rules Failed              | 262                                       | 18                                         | -244            |
 | Total Rules               | 727                                       | 727                                        | -               |
 
-> **Baseline Report:** [docs/phase-2-backup/](docs/phase-2-backup/)
+> **Baseline Report:** https://davperez-tech.github.io/Automated-DISA-STIG-Hardening-Pipeline/Reports/rhel9-stig-baseline-report.html
