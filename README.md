@@ -56,6 +56,23 @@ An automated pipeline that:
 
 ## Project Files
 
+### Configuration Files
+
+The automation configurations are available in the [`configs/`](configs/) directory:
+- **[`ansible.cfg`](configs/ansible.cfg)** - Ansible configuration with inventory path, SSH settings
+- **[`lab.ini`](configs/lab.ini)** - Inventory file defining target hosts and connection parameters
+
+### Playbooks
+
+The automation playbooks are in the [`playbooks/`](playbooks/) directory:
+- **[`full-pipeline.yml`](playbooks/full-pipeline.yml)** - Master orchestration playbook running all three phases:
+  - Phase 1: Baseline STIG scan
+  - Phase 2: Automated remediation
+  - Phase 3: Post-remediation verification
+
+- **[`rhel9-stig-remediation.yml`](playbooks/rhel9-stig-remediation.yml)** - OpenSCAP auto-generated remediation tasks with 300+ security controls. **(Select "View raw" to see the full file)**
+
+
 ## Security Hardening
 | Authentication & Access Control                               | Audit & Logging                                  | System Protection                                |
 | :-------------                                                |:--------------                                   |:--------------                                   |
