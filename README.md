@@ -44,3 +44,12 @@ An automated pipeline that:
 4. Validates compliance with post-remediation scans
 5. Documents exceptions with risk assessments
 
+## Architecture
+<p align="center">
+<img width="394" height="515" alt="Architecture" src="https://github.com/user-attachments/assets/b9d87ace-c8af-407f-baaf-382d2eae2f15" />
+</p>
+
+## Workflow
+<p align="center">
+<img width="734" height="270" alt="Workflow" src="https://github.com/user-attachments/assets/6c8d4fbe-2505-49ce-a254-a1d847836419" />
+</p>
