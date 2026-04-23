@@ -143,3 +143,28 @@ represent exceptions requiring organizational risk acceptance, site-specific con
 prerequisites that cannot be addressed through automated scripting alone. 
 
 > **Exception & Unresolved Findings Report:** [Reports](Reports/Exception&UnresolvedFindingsReport.pdf)
+
+## POA&M Document
+Formal Plan of Action & Milestones document tracking the 18 unresolved DISA STIG findings remaining after automated remediation brought your RHEL 9 system from 48.64% to 96.12% compliance.
+
+> **POA&M:** [Document](Reports/POA&MReport.pdf)
+
+## Compliance Framework and Mapping
+This implementation satisfies controls across multiple frameworks:
+
+| **NIST SP 800-53 Rev5**            | NIST SP 800-171                                              |
+| :-------------                     | :--------------                                              |                        
+| AC-2 Account Management            | 3.1.x Access Control (14 requirements)                       |
+| AC-7 Unsuccessful Login Attempts   | 3.3.x Audit & Accountability (9 requirements)                |
+| AU-2 Audit Events                  | 3.4.x Configuration Management (9 requirements)              |
+| AU-12 Audit Generation             | 3.5.x Identification & Authentication (11 requirements)      |
+| CM-6 Configuration Settings        | 3.13.x System & Communications Protection (16 requirements)  |
+| IA-5 Authenticator Management      | -                                                            |
+| SC-7 Boundary Protection           | -                                                            |
+| SI-2 Flaw Remediation              | -                                                            |
+
+### CMMC Level 2
+
+- Demonstrates implementation of 110+ practices required for DoD contractors handling Controlled Unclassified Information (CUI).
+
+- Relevant domains: Access Control (AC), Audit & Accountability (AU), Configuration Management (CM), Identification & Authentication (IA), System & Communications Protection (SC)
