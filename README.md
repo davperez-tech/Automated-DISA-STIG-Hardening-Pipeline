@@ -1,4 +1,5 @@
 # Automated DISA STIG Hardening Pipeline
+Automated security compliance pipeline reducing RHEL 9 DISA STIG implementation from 40+ hours to <30 minutes while improving compliance from 48% to 96%. Delivers repeatable, auditable hardening across enterprise Linux fleets with formal exception tracking.
 
 ## At a Glance
 | Compliance Improvement   | Progress                                  |
